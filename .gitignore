@@ -1,17 +1,28 @@
-.gitignore
- Assembly-CSharp-vs.csproj
- Assembly-CSharp.csproj
- Assembly-CSharp.pidb
- Library/
- Kitchen-Wrath-csharp.sln
- Kitchen-Wrath.sln
- Kitchen-Wrath.userprefs
-Kitchen-Wrath.sln
-Kitchen-Wrath-csharp.sln
-Library/CurrentLayout.dwlt
-Library/expandedItems
-Library/ScriptMapper
-
-Library/assetDatabase3
-
-Temp/__EditModeScene
+# ---------------[ Unity generated ]------------------ #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+ 
+# ----[ Visual Studio / MonoDevelop generated ]------- #
+ 
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+ 
+# -------------[ OS generated ]------------------------ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
