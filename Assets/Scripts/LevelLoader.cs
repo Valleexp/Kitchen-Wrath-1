@@ -9,8 +9,13 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject platformRemover;
 	public GameObject countdownTimer;
 	public GameObject buttons;
+	public GameObject police;
+	public GameObject chef;
+	public GameObject food;
+	public GameObject obstacle;
 
 	[HideInInspector]public List<GameObject> listOfPlatforms = new List<GameObject>();
+	[HideInInspector]public List<GameObject> listOfChefs = new List<GameObject>();
 	
 	public float platformStartX = 0.0f;
 	public float platformStartY = 0.0f;
@@ -20,23 +25,29 @@ public class LevelLoader : MonoBehaviour {
 
 	public float platformRemoverStartX = 0.0f;
 
+	public int amountOfChefsAtOneTime = 0;
+
 	void Awake()
 	{
 		Screen.orientation = ScreenOrientation.AutoRotation;
 
-		InitCountdownTimer(countdownTimer.GetComponent<CountdownTimer>().countdownTimerX, countdownTimer.GetComponent<CountdownTimer>().countdownTimerY);
-
-		InitButtons(0.0f, 0.0f);
-
-		InitPlayer(player.GetComponent<Player>().playerX, player.GetComponent<Player>().playerY);
-
-		InitPlatformRemover(platformRemoverStartX, 0.0f);
+		InitObj(countdownTimer, countdownTimer.GetComponent<CountdownTimer>().countdownTimerX, countdownTimer.GetComponent<CountdownTimer>().countdownTimerY);
+		InitObj(buttons, 0.0f, 0.0f);
+		InitObj(player, player.GetComponent<Player>().playerX, player.GetComponent<Player>().playerY);
+		InitObj(platformRemover, platformRemoverStartX, 0.0f);
 
 		for(int i = 0; i < amountOfPlatformsAtOneTime; i++)
 		{
-			InitPlatform(platformStartX + (platform.transform.localScale.x * i), platformStartY);
+			InitObjList(platform, listOfPlatforms, platformStartX + (platform.transform.localScale.x * i), platformStartY);
 		}
 		newPlatformPositionX = (float)(platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime));
+
+		InitObj(police, platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime), platformStartY);
+
+		for(int i = 0; i < amountOfChefsAtOneTime; i++)
+		{
+			InitObjList(chef, listOfChefs, chef.GetComponent<Chef>().chefX, chef.GetComponent<Chef>().chefY);
+		}
 	}
 
 	// Use this for initialization
@@ -54,44 +65,20 @@ public class LevelLoader : MonoBehaviour {
 		return (GameObject)Instantiate((Object)(gObj), new Vector3(position.x, position.y, 0.0f), Quaternion.identity);  
 	}
 
-	void InitPlayer(float posX, float posY)
+	void InitObj(GameObject obj, float posX, float posY)
 	{
-		if(player != null)
+		if(obj != null)
 		{
-			player = SpawnObject(player, new Vector2(posX, posY));
+			obj = SpawnObject(obj, new Vector2(posX, posY));
 		}
 	}
 
-	void InitPlatform(float posX, float posY)
+	void InitObjList(GameObject obj, List<GameObject> listOfObjs, float posX, float posY)
 	{
-		if(platform != null)
+		if(obj != null)
 		{
-			listOfPlatforms.Add(platform);
-			listOfPlatforms[listOfPlatforms.Count - 1] = SpawnObject(listOfPlatforms[listOfPlatforms.Count - 1], new Vector2(posX, posY));
-		}
-	}
-
-	void InitPlatformRemover(float posX, float posY)
-	{
-		if(platformRemover != null)
-		{
-			platformRemover = SpawnObject(platformRemover, new Vector2(posX, posY));
-		}
-	}
-
-	void InitCountdownTimer(float posX, float posY)
-	{
-		if(countdownTimer != null)
-		{
-			countdownTimer = SpawnObject(countdownTimer, new Vector2(posX, posY));
-		}
-	}
-
-	void InitButtons(float posX, float posY)
-	{
-		if(buttons != null)
-		{
-			buttons = SpawnObject(buttons, new Vector2(posX, posY));
+			listOfObjs.Add(obj);
+			listOfObjs[listOfObjs.Count - 1] = SpawnObject(listOfObjs[listOfObjs.Count - 1], new Vector2(posX, posY));
 		}
 	}
 }
