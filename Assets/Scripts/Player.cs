@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position += Vector3.right * Time.deltaTime * playerSpeed;
+
 		if(toggleJump && isOnGround)
 		{
 			Jump();
