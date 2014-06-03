@@ -5,10 +5,15 @@ public class CheckPlatformRemove : MonoBehaviour {
 	
 	//pointer for performance back to manager
 	public GameObject gameManager;
+
+	void Awake()
+	{
+		gameManager = GameObject.Find("LevelLoader");
+	}
 	
 	// Use this for initialization
 	void Start () {
-		gameManager = GameObject.Find("LevelLoader");
+
 	}
 	
 	void OnTriggerEnter2D(Collider2D obj)

@@ -7,6 +7,8 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject player;
 	public GameObject platform;
 	public GameObject platformRemover;
+	public GameObject countdownTimer;
+	public GameObject buttons;
 
 	[HideInInspector]public List<GameObject> listOfPlatforms = new List<GameObject>();
 	
@@ -15,15 +17,16 @@ public class LevelLoader : MonoBehaviour {
 
 	public float newPlatformPositionX = 0.0f;
 	public int amountOfPlatformsAtOneTime = 0;
-	public float platformLength = 0.0f;
 
 	public float platformRemoverStartX = 0.0f;
-
-	public float cameraDistance = 0.0f;
 
 	void Awake()
 	{
 		Screen.orientation = ScreenOrientation.AutoRotation;
+
+		InitCountdownTimer(countdownTimer.GetComponent<CountdownTimer>().countdownTimerX, countdownTimer.GetComponent<CountdownTimer>().countdownTimerY);
+
+		InitButtons(0.0f, 0.0f);
 
 		InitPlayer(player.GetComponent<Player>().playerX, player.GetComponent<Player>().playerY);
 
@@ -43,23 +46,19 @@ public class LevelLoader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// stick the camera to the player
-		Camera.main.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position - new Vector3 (0.0f, 0.0f, cameraDistance);
+
 	}
 
-	void SpawnObject(GameObject gObj, Vector2 position)
+	GameObject SpawnObject(GameObject gObj, Vector2 position)
 	{
-		Instantiate((Object)(gObj), new Vector3(position.x, position.y, 0.0f), Quaternion.identity);  
+		return (GameObject)Instantiate((Object)(gObj), new Vector3(position.x, position.y, 0.0f), Quaternion.identity);  
 	}
 
 	void InitPlayer(float posX, float posY)
 	{
 		if(player != null)
 		{
-			player.GetComponent<Player>().playerX = posX;
-			player.GetComponent<Player>().playerY = posY;
-
-			SpawnObject(player, new Vector2(posX, posY));
+			player = SpawnObject(player, new Vector2(posX, posY));
 		}
 	}
 
@@ -68,11 +67,7 @@ public class LevelLoader : MonoBehaviour {
 		if(platform != null)
 		{
 			listOfPlatforms.Add(platform);
-
-			listOfPlatforms[listOfPlatforms.Count - 1].GetComponent<Platform>().platformX = posX;
-			listOfPlatforms[listOfPlatforms.Count - 1].GetComponent<Platform>().platformY = posY;
-
-			SpawnObject(listOfPlatforms[listOfPlatforms.Count - 1], new Vector2(posX, posY));
+			listOfPlatforms[listOfPlatforms.Count - 1] = SpawnObject(listOfPlatforms[listOfPlatforms.Count - 1], new Vector2(posX, posY));
 		}
 	}
 
@@ -80,7 +75,23 @@ public class LevelLoader : MonoBehaviour {
 	{
 		if(platformRemover != null)
 		{
-			SpawnObject(platformRemover, new Vector2(posX, posY));
+			platformRemover = SpawnObject(platformRemover, new Vector2(posX, posY));
+		}
+	}
+
+	void InitCountdownTimer(float posX, float posY)
+	{
+		if(countdownTimer != null)
+		{
+			countdownTimer = SpawnObject(countdownTimer, new Vector2(posX, posY));
+		}
+	}
+
+	void InitButtons(float posX, float posY)
+	{
+		if(buttons != null)
+		{
+			buttons = SpawnObject(buttons, new Vector2(posX, posY));
 		}
 	}
 }
