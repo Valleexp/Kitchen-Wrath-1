@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	public float playerY = 0.0f;
 	public float playerJump = 0.0f;
 	public float playerSpeed = 0.0f;
+	public float playerAcceleration = 0.0f;
 
 	[HideInInspector]public bool toggleJump = false;
 	[HideInInspector]public bool toggleSlash = false;
@@ -46,6 +47,12 @@ public class Player : MonoBehaviour {
 			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.FOOD, true);
 			UnSlash();
 		}
+
+		if(GetComponent<Timer>().TicksPastDelay())
+		{
+			Accelerate();
+			GetComponent<Timer>().ResetTicks();
+		}
 	}
 
 	void Jump()
@@ -55,12 +62,12 @@ public class Player : MonoBehaviour {
 
 	void Slash()
 	{
-		renderer.material.color = Color.red;
+		GetComponentInChildren<SpriteRenderer>().color = Color.red;
 	}
 
 	void UnSlash()
 	{
-		renderer.material.color = Color.white;
+		GetComponentInChildren<SpriteRenderer>().color = Color.white;
 	}
 
 	void OnCollisionEnter2D(Collision2D obj)
@@ -92,6 +99,18 @@ public class Player : MonoBehaviour {
 			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
 			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CABBAGE);
 			break;
+		case "Carrot":
+			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
+			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CARROT);
+			break;
+		case "Pumpkin":
+			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
+			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.PUMPKIN);
+			break;
+		case "Tomato":
+			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
+			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.TOMATO);
+			break;
 		}
 	}
 
@@ -103,6 +122,11 @@ public class Player : MonoBehaviour {
 			isOnGround = false;
 			break;
 		}
+	}
+
+	private void Accelerate()
+	{
+		playerSpeed += playerAcceleration;
 	}
 }
 	

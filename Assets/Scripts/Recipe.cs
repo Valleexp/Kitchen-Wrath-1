@@ -7,7 +7,10 @@ public enum INGREDIENT
 	CHICKEN = 0,
 	EGG,
 	POTATO,
-	CABBAGE
+	CABBAGE,
+	CARROT,
+	PUMPKIN,
+	TOMATO
 };
 
 public class Recipe{

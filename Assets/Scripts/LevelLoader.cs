@@ -16,12 +16,15 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject egg;
 	public GameObject potato;
 	public GameObject cabbage;
+	public GameObject carrot;
+	public GameObject pumpkin;
+	public GameObject tomato;
 	public GameObject obstacle;
 	public GameObject highscore;
 	
 	[HideInInspector]public List<GameObject> listOfPlatforms = new List<GameObject>();
 	[HideInInspector]public List<GameObject> listOfChefs = new List<GameObject>();
-	public List<GameObject> listOfFoods = new List<GameObject>();
+	[HideInInspector]public List<GameObject> listOfFoods = new List<GameObject>();
 	
 	public float platformStartX = 0.0f;
 	public float platformStartY = 0.0f;
@@ -62,7 +65,7 @@ public class LevelLoader : MonoBehaviour {
 		{
 //			InitObjList(food, listOfFoods, (i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)));
 			InitFoodListRandom((i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)), 
-			                   (int)INGREDIENT.CHICKEN, (int)INGREDIENT.CABBAGE);
+			                   (int)INGREDIENT.CHICKEN, (int)INGREDIENT.TOMATO);
 		}
 	}
 
@@ -115,6 +118,15 @@ public class LevelLoader : MonoBehaviour {
 			break;
 		case (int)INGREDIENT.CABBAGE:
 			InitObjList(cabbage, listOfFoods, posX, posY);
+			break;
+		case (int)INGREDIENT.CARROT:
+			InitObjList(carrot, listOfFoods, posX, posY);
+			break;
+		case (int)INGREDIENT.PUMPKIN:
+			InitObjList(pumpkin, listOfFoods, posX, posY);
+			break;
+		case (int)INGREDIENT.TOMATO:
+			InitObjList(tomato, listOfFoods, posX, posY);
 			break;
 		}
 	}

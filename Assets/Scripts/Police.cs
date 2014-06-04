@@ -10,7 +10,6 @@ public class Police : MonoBehaviour {
 	private GameObject player = null;
 	private GameObject platformRemover = null;
 
-
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -23,7 +22,7 @@ public class Police : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 //		transform.position = player.transform.position - new Vector3(differenceX, 0.0f);
-		transform.position = new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x - differenceX, policeY);
+		transform.position = new Vector3(player.transform.position.x - differenceX, policeY);
 	}
 
 	void OnCollisionEnter2D(Collision2D obj)
