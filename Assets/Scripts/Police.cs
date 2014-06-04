@@ -22,7 +22,8 @@ public class Police : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = player.transform.position - new Vector3(differenceX, 0.0f);
+//		transform.position = player.transform.position - new Vector3(differenceX, 0.0f);
+		transform.position = new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x - differenceX, policeY);
 	}
 
 	void OnCollisionEnter2D(Collision2D obj)
