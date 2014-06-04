@@ -1,0 +1,12 @@
+<recipes>
+	
+	<!--  Recipes are to be formatted in this way. The order of ingredients is important -->
+	<recipe>
+		<name>Chicken Salad</name>
+		<description>The First Recipe Ever Made</description>
+		<ingredient>chicken</ingredient>
+		<ingredient>egg</ingredient>
+		<ingredient>potato</ingredient>
+	</recipe>
+	
+</recipes>
