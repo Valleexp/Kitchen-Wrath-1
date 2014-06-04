@@ -42,7 +42,7 @@ public class RecipeCheck : MonoBehaviour {
 				return recipeList[i].recipeName;
 			}
 		}
-		//Debug.Log ("No match");
+		Debug.Log ("No match");
 		return "no match";
 	}
 
