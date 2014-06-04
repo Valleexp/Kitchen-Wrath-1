@@ -65,7 +65,7 @@ public class LevelLoader : MonoBehaviour {
 		{
 //			InitObjList(food, listOfFoods, (i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)));
 			InitFoodListRandom((i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)), 
-			                   (int)INGREDIENT.CHICKEN, (int)INGREDIENT.TOMATO);
+			                   (int)INGREDIENT.POTATO, (int)INGREDIENT.TOMATO);
 		}
 	}
 

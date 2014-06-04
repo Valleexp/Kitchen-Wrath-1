@@ -15,7 +15,7 @@ public class DisplayUI : MonoBehaviour {
 
 
 
-	public List<Texture> ingredients = new List<Texture>();
+	private List<Texture> ingredients = new List<Texture>();
 
 	// the list of textures for the ingredients
 	public Texture cabbageTexture;
@@ -27,7 +27,7 @@ public class DisplayUI : MonoBehaviour {
 
 	// Put in 3 default no ingredient textures
 	void Start () {
-		for(int i = 0; amountOfBoxes < i; i ++)
+		for(int i = 0; i < amountOfBoxes; i ++)
 		{
 			ingredients.Add(defaultTexture);
 		}
@@ -63,6 +63,15 @@ public class DisplayUI : MonoBehaviour {
 				Debug.Log("We don't have the texture for that food you just obtained yet!");
 				break;
 			}
+		}
+	}
+
+	public void ResetIngredientBoxTextures()
+	{
+		//Reset the textures
+		for(int i = 0; i < ingredients.Count; i++)
+		{
+			ingredients[i] = defaultTexture;
 		}
 	}
 

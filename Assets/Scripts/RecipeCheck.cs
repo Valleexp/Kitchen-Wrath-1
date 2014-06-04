@@ -39,6 +39,12 @@ public class RecipeCheck : MonoBehaviour {
 	{
 		if(playerIngredientList.Count < 3)
 		{
+			if(playerIngredientList.Count == 0)
+			{
+				GetComponent<DisplayUI>().ResetIngredientBoxTextures();
+			}
+
+
 			playerIngredientList.Add(ingredient);
 
 			GetComponent<DisplayUI>().ChangeIngredientBox(playerIngredientList);
