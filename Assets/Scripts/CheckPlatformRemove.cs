@@ -8,7 +8,7 @@ public class CheckPlatformRemove : MonoBehaviour {
 
 	void Awake()
 	{
-		gameManager = GameObject.Find("LevelLoader");
+		gameManager = GameObject.Find("PlatformCreator");
 	}
 	
 	// Use this for initialization
@@ -22,8 +22,12 @@ public class CheckPlatformRemove : MonoBehaviour {
 		if(obj.gameObject.tag == "PlatformRemover")
 		{	
 			// check if the platforms need any instantiating or removings
-			transform.position = new Vector3 (gameManager.GetComponent<LevelLoader>().newPlatformPositionX, transform.position.y, 0.0f);
-			gameManager.GetComponent<LevelLoader>().newPlatformPositionX += transform.localScale.x;
+//			transform.position = new Vector3 (gameManager.GetComponent<LevelLoader>().newPlatformPositionX, transform.position.y, 0.0f);
+//			gameManager.GetComponent<LevelLoader>().newPlatformPositionX += transform.localScale.x;
+
+			gameManager.GetComponent<PlatformSpawner>().SpawnPlatform();
+			
+			Destroy(gameObject);
 //			Debug.Log("Collided");
 		}
 	}

@@ -37,7 +37,9 @@ public class InputManager : MonoBehaviour {
 
 		if(Input.touchCount > 0)
 		{
-			if(jumpButton.guiTexture.HitTest(Input.GetTouch(0).position))
+
+
+			if(jumpButton.guiTexture.HitTest(Input.GetTouch(0).position) && Input.touches[0].phase == TouchPhase.Began)
 			{
 				player.GetComponent<Player>().toggleJump = true;
 			}
@@ -46,7 +48,7 @@ public class InputManager : MonoBehaviour {
 				player.GetComponent<Player>().toggleJump = false;
 			}
 
-			if(slashButton.guiTexture.HitTest(Input.GetTouch(0).position))
+			if(slashButton.guiTexture.HitTest(Input.GetTouch(0).position) && Input.touches[0].phase == TouchPhase.Began)
 			{
 				player.GetComponent<Player>().toggleSlash = true;
 			}

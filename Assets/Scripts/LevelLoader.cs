@@ -50,7 +50,7 @@ public class LevelLoader : MonoBehaviour {
 
 		for(int i = 0; i < amountOfPlatformsAtOneTime; i++)
 		{
-			InitObjList(platform, listOfPlatforms, platformStartX + (platform.transform.localScale.x * i), platformStartY);
+			//InitObjList(platform, listOfPlatforms, platformStartX + (platform.transform.localScale.x * i), platformStartY);
 		}
 		newPlatformPositionX = (float)(platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime));
 
