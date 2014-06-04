@@ -16,9 +16,11 @@ public class Player : MonoBehaviour {
 
 	[HideInInspector]public int slashChefCounter = 0;
 
+	private GameObject highscore = null;
+
 	// Use this for initialization
 	void Start () {
-
+		highscore = GameObject.FindGameObjectWithTag("Highscore");
 	}
 	
 	// Update is called once per frame
@@ -29,20 +31,24 @@ public class Player : MonoBehaviour {
 		{
 			Jump();
 		}
-
+			
 		if(toggleSlash)
 		{
+			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.CHEF, false);
+			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.FOOD, false);
 			Slash();
 		}
 		else
 		{
+			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.CHEF, true);
+			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.FOOD, true);
 			UnSlash();
 		}
 	}
 
 	void Jump()
 	{
-		rigidbody2D.AddForce(new Vector2(0.0f, playerJump));
+		rigidbody2D.AddForce(new Vector2(0.0f, playerJump), ForceMode2D.Impulse);
 	}
 
 	void Slash()
@@ -64,6 +70,11 @@ public class Player : MonoBehaviour {
 			break;
 		case "Chef":
 			slashChefCounter++;
+			break;
+		case "Food":
+			highscore.GetComponent<Score>().score = 10;
+			highscore.GetComponent<Score>().scoreMultiplyer = 1;
+			highscore.GetComponent<Score>().addScore = true;
 			break;
 		}
 	}

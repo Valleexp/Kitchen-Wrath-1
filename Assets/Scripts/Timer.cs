@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour {
 	public int hours = 0;
 	public int minutes = 0;
 	public int seconds = 0;
+	public float delay = 0.0f;
 
 	private float ticks = 0.0f;
 	private bool countdown = false;
@@ -34,7 +35,7 @@ public class Timer : MonoBehaviour {
 	{
 		if(countdown)
 		{
-			if(ticks >= 1.0f)
+			if(TicksPastDelay())
 			{
 				if(seconds > 0)
 				{
@@ -62,11 +63,7 @@ public class Timer : MonoBehaviour {
 				{
 					countdown = false;
 				}
-				ticks = 0.0f;
-			}
-			else
-			{
-				ticks += Time.deltaTime;
+				ResetTicks();
 			}
 		}
 	}
@@ -89,5 +86,23 @@ public class Timer : MonoBehaviour {
 		{
 			hours = 24;
 		}
+	}
+
+	public bool TicksPastDelay()
+	{
+		if(ticks >= delay)
+		{
+			return true;
+		}
+		else
+		{
+			ticks += Time.deltaTime;
+			return false;
+		}
+	}
+
+	public void ResetTicks()
+	{
+		ticks = 0.0f;
 	}
 }

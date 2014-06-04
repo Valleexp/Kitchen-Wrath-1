@@ -12,8 +12,11 @@ public class CountdownTimer : MonoBehaviour {
 
 	private string countdownDisplay = "";
 
+	private GameObject mainCamera = null;
+
 	void Awake()
 	{
+		mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 		TextDisplay();
 		GetComponent<TextMesh>().transform.position = new Vector3(countdownTimerX, countdownTimerY);
 		GetComponent<Timer>().StartTime();
@@ -21,13 +24,13 @@ public class CountdownTimer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		TextDisplay();
-		GetComponent<TextMesh>().transform.position = new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x, GetComponent<TextMesh>().transform.position.y);
+		GetComponent<TextMesh>().transform.position = new Vector3(mainCamera.GetComponent<MainCamera>().transform.position.x, 
+			              											GetComponent<TextMesh>().transform.position.y);
 	}
 
 	private void TextDisplay()

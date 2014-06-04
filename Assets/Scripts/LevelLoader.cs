@@ -13,25 +13,30 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject chef;
 	public GameObject food;
 	public GameObject obstacle;
-
+	public GameObject highscore;
+	
 	[HideInInspector]public List<GameObject> listOfPlatforms = new List<GameObject>();
 	[HideInInspector]public List<GameObject> listOfChefs = new List<GameObject>();
+	[HideInInspector]public List<GameObject> listOfFoods = new List<GameObject>();
 	
 	public float platformStartX = 0.0f;
 	public float platformStartY = 0.0f;
-
+	
 	public float newPlatformPositionX = 0.0f;
 	public int amountOfPlatformsAtOneTime = 0;
-
+	
 	public float platformRemoverStartX = 0.0f;
-
+	
 	public int amountOfChefsAtOneTime = 0;
+	
+	public int amountOfFoodsAtOneTime = 0;
 
 	void Awake()
 	{
 		Screen.orientation = ScreenOrientation.AutoRotation;
 
 		InitObj(countdownTimer, countdownTimer.GetComponent<CountdownTimer>().countdownTimerX, countdownTimer.GetComponent<CountdownTimer>().countdownTimerY);
+		InitObj(highscore, highscore.GetComponent<Highscore>().highscoreX, highscore.GetComponent<Highscore>().highscoreY);
 		InitObj(buttons, 0.0f, 0.0f);
 		InitObj(player, player.GetComponent<Player>().playerX, player.GetComponent<Player>().playerY);
 		InitObj(platformRemover, platformRemoverStartX, 0.0f);
@@ -46,7 +51,12 @@ public class LevelLoader : MonoBehaviour {
 
 		for(int i = 0; i < amountOfChefsAtOneTime; i++)
 		{
-			InitObjList(chef, listOfChefs, chef.GetComponent<Chef>().chefX, chef.GetComponent<Chef>().chefY);
+			InitObjList(chef, listOfChefs, chef.GetComponent<Chef>().chefX + (i * Random.Range(2, 10)), chef.GetComponent<Chef>().chefY);
+		}
+
+		for(int i = 0; i < amountOfFoodsAtOneTime; i++)
+		{
+			InitObjList(food, listOfFoods, (i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)));
 		}
 	}
 
