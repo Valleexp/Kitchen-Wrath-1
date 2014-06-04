@@ -9,41 +9,88 @@ public class DisplayUI : MonoBehaviour {
 	public int ingredientBoxY = 50;
 	public int ingredientBoxX = Screen.width - 200;
 
-	
-	public Texture firstIngredient;
-	public Texture secondIngredient;
-	public Texture thirdIngredient;
+	public int amountOfBoxes = 3;
 
-	// Use this for initialization
-	void Start () {
+	public Texture defaultTexture;
+
+
+
+	public List<Texture> ingredients = new List<Texture>();
+
+	// the list of textures for the ingredients
+	public Texture cabbageTexture;
+	public Texture carrotTexture;
+	public Texture potatoTexture;
+	public Texture pumpkinTexture;
+	public Texture tomatoTexture;
 	
+
+	// Put in 3 default no ingredient textures
+	void Start () {
+		for(int i = 0; amountOfBoxes < i; i ++)
+		{
+			ingredients.Add(defaultTexture);
+		}
+	}
+
+	public void ChangeIngredientBox(List<INGREDIENT> playerIngredientList)
+	{
+		//Update the ingredients
+		for(int i = 0; i < playerIngredientList.Count; i++)
+		{
+			switch(playerIngredientList[i])
+			{
+			case INGREDIENT.CABBAGE:
+				ingredients[i] = cabbageTexture;
+					break;
+
+			case INGREDIENT.CARROT:
+				ingredients[i] = carrotTexture;
+				break;
+
+			case INGREDIENT.POTATO:
+				ingredients[i] = potatoTexture;
+				break;
+
+			case INGREDIENT.PUMPKIN:
+				ingredients[i] = pumpkinTexture;
+				break;
+
+			case INGREDIENT.TOMATO:
+				ingredients[i] = tomatoTexture;
+				break;
+			default:
+				Debug.Log("We don't have the texture for that food you just obtained yet!");
+				break;
+			}
+		}
 	}
 
 	void OnGUI()
 	{
 		//Displays Ingredients Boxes that contains what you have recently slashed to the top right of game screen
-		if (!firstIngredient) {
-			Debug.LogError("Assign a Texture to firstIngredient in the inspector.");
+		if (!ingredients[0]) {
+			Debug.LogError("Assign a Texture to ingredients[0] in the inspector.");
 		}
 		else
 		{
-			GUI.DrawTexture(new Rect(ingredientBoxX + 10, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), firstIngredient, ScaleMode.StretchToFill, true, 10.0F);
+			GUI.DrawTexture(new Rect(ingredientBoxX + 10, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[0], ScaleMode.StretchToFill, true, 10.0F);
 		}
 
-		if (!secondIngredient) {
-			Debug.LogError("Assign a Texture to secondIngredient in the inspector.");
+		if (!ingredients[1]) {
+			Debug.LogError("Assign a Texture to ingredients[1] in the inspector.");
 		}
 		else
 		{
-			GUI.DrawTexture(new Rect(ingredientBoxX + 70, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), secondIngredient, ScaleMode.StretchToFill, true, 10.0F);
+			GUI.DrawTexture(new Rect(ingredientBoxX + 70, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[1], ScaleMode.StretchToFill, true, 10.0F);
 		}
 
-		if (!thirdIngredient) {
-			Debug.LogError("Assign a Texture to thirdIngredient in the inspector.");
+		if (!ingredients[2]) {
+			Debug.LogError("Assign a Texture to ingredients[2] in the inspector.");
 		}
 		else
 		{
-			GUI.DrawTexture(new Rect(ingredientBoxX + 130, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), thirdIngredient, ScaleMode.StretchToFill, true, 10.0F);
+			GUI.DrawTexture(new Rect(ingredientBoxX + 130, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[2], ScaleMode.StretchToFill, true, 10.0F);
 		}
 	}
 

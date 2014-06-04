@@ -2,11 +2,35 @@
 	
 	<!--  Recipes are to be formatted in this way. The order of ingredients is important -->
 	<recipe>
-		<name>Chicken Salad</name>
+		<name>Salad</name>
 		<description>The First Recipe Ever Made</description>
-		<ingredient>chicken</ingredient>
-		<ingredient>egg</ingredient>
+		<ingredient>cabbage</ingredient>
+		<ingredient>carrot</ingredient>
 		<ingredient>potato</ingredient>
+	</recipe>
+	
+	<recipe>
+		<name>Tomato Soup</name>
+		<description>Tomato Soup Yum!</description>
+		<ingredient>tomato</ingredient>
+		<ingredient>tomato</ingredient>
+		<ingredient>tomato</ingredient>
+	</recipe>
+	
+	<recipe>
+		<name>Carrot Soup</name>
+		<description>Carrot Soup Yum!</description>
+		<ingredient>carrot</ingredient>
+		<ingredient>carrot</ingredient>
+		<ingredient>carrot</ingredient>
+	</recipe>
+	
+	<recipe>
+		<name>Pumpkin Soup</name>
+		<description>Pumpkin Soup Yum!</description>
+		<ingredient>pumpkin</ingredient>
+		<ingredient>pumpkin</ingredient>
+		<ingredient>pumpkin</ingredient>
 	</recipe>
 	
 </recipes>

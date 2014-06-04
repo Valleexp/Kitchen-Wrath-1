@@ -24,17 +24,6 @@ public class RecipeCheck : MonoBehaviour {
 		for(int i = 0; i < recipeList.Count; i++)
 		{
 			bool isEqual = new HashSet<INGREDIENT>(recipeList[i].recipe).SetEquals(playerIngredientList);
-			//bool isEqual = true;
-
-//			for(int j = 0; j < playerIngredientList.Count; j++)
-//			{
-//				Debug.Log("Length of player ingredients: " + recipeList[i].recipe.Count);
-//				if(recipeList[i].recipe[j] != playerIngredientList[j])
-//				{
-//					isEqual = false;
-//					break;
-//				}
-//			}
 
 			if(isEqual)
 			{
@@ -51,6 +40,8 @@ public class RecipeCheck : MonoBehaviour {
 		if(playerIngredientList.Count < 3)
 		{
 			playerIngredientList.Add(ingredient);
+
+			GetComponent<DisplayUI>().ChangeIngredientBox(playerIngredientList);
 
 			if(playerIngredientList.Count == 3)
 			{
