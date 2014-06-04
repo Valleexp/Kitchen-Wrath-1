@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	public float playerY = 0.0f;
 	public float playerJump = 0.0f;
 	public float playerSpeed = 0.0f;
+	public float playerMaxSpeed = 0.0f;
 	public float playerAcceleration = 0.0f;
 
 	[HideInInspector]public bool toggleJump = false;
@@ -37,18 +38,18 @@ public class Player : MonoBehaviour {
 			
 		if(toggleSlash)
 		{
-			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.CHEF, false);
-			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.FOOD, false);
+			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, false);
+			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.FOOD, false);
 			Slash();
 		}
 		else
-		{
-			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.CHEF, true);
-			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.FOOD, true);
+		{	
+			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, true);
+			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.FOOD, true);
 			UnSlash();
 		}
 
-		if(GetComponent<Timer>().TicksPastDelay())
+		if(GetComponent<Timer>().TicksPastDelay() && playerSpeed < playerMaxSpeed)
 		{
 			Accelerate();
 			GetComponent<Timer>().ResetTicks();

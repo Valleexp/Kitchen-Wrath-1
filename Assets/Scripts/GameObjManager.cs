@@ -18,9 +18,9 @@ public class GameObjManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.POLICE, (int)LayerData.LAYERVALUE.CHEF, true);
-		Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.POLICE, (int)LayerData.LAYERVALUE.FOOD, true);
-		Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.CHEF, (int)LayerData.LAYERVALUE.FOOD, true);
+		Physics2D.IgnoreLayerCollision((int)LAYERVALUE.POLICE, (int)LAYERVALUE.CHEF, true);
+		Physics2D.IgnoreLayerCollision((int)LAYERVALUE.POLICE, (int)LAYERVALUE.FOOD, true);
+		Physics2D.IgnoreLayerCollision((int)LAYERVALUE.CHEF, (int)LAYERVALUE.FOOD, true);
 	
 		CheckChefCounter();
 	}
@@ -43,7 +43,10 @@ public class GameObjManager : MonoBehaviour {
 			}
 			else if(player.GetComponent<Player>().slashChefCounter - updateSlashCount > 0)
 			{
-				police.GetComponent<Police>().differenceX -= 3.0f;
+				if(police.GetComponent<Police>().differenceX > 0)
+				{
+					police.GetComponent<Police>().differenceX -= 2.0f;
+				}
 				updateSlashCount = player.GetComponent<Player>().slashChefCounter;
 			}
 		}
