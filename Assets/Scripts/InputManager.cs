@@ -3,34 +3,84 @@ using System.Collections;
 
 public class InputManager : MonoBehaviour {
 
-	private GameObject Player = null;
+	private GameObject player = null;
+	private GameObject jumpButton = null;
+	private GameObject slashButton = null;
 
 	// Use this for initialization
 	void Start () {
-		Player = GameObject.FindGameObjectWithTag("Player");
+		player = GameObject.FindGameObjectWithTag("Player");
+		jumpButton = GameObject.FindGameObjectWithTag("JumpButton");
+		slashButton = GameObject.FindGameObjectWithTag("SlashButton");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//keyboard test
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			Player.GetComponent<Player>().toggleJump = true;
+			player.GetComponent<Player>().toggleJump = true;
 		}
 		else
 		{
-			Player.GetComponent<Player>().toggleJump = false;
+			player.GetComponent<Player>().toggleJump = false;
+		}
+
+		if(Input.GetKeyDown(KeyCode.S))
+		{
+			player.GetComponent<Player>().toggleSlash = true;
+		}
+		else
+		{
+			player.GetComponent<Player>().toggleSlash = false;
 		}
 
 		if(Input.touchCount > 0)
 		{
-			if(Input.GetTouch(0).phase == TouchPhase.Began)
+			if(jumpButton.guiTexture.HitTest(Input.GetTouch(0).position))
 			{
-				Player.GetComponent<Player>().toggleJump = true;
+				player.GetComponent<Player>().toggleJump = true;
 			}
 			else
 			{
-				Player.GetComponent<Player>().toggleJump = false;
+				player.GetComponent<Player>().toggleJump = false;
+			}
+
+			if(slashButton.guiTexture.HitTest(Input.GetTouch(0).position))
+			{
+				player.GetComponent<Player>().toggleSlash = true;
+			}
+			else
+			{
+				player.GetComponent<Player>().toggleSlash = false;
 			}
 		}
+
+//		foreach(Touch touch in Input.touches)
+//		{
+//			switch(touch.phase)
+//			{
+//			case TouchPhase.Began:
+//				break;
+//			case TouchPhase.Canceled:
+//				break;
+//			case TouchPhase.Ended:
+//				break;
+//			case TouchPhase.Moved:
+//				break;
+//			case TouchPhase.Stationary:
+//				break;
+//			case iPhoneTouchPhase.Began:
+//				break;
+//			case iPhoneTouchPhase.Canceled:
+//				break;
+//			case iPhoneTouchPhase.Ended:
+//				break;
+//			case iPhoneTouchPhase.Moved:
+//				break;
+//			case iPhoneTouchPhase.Stationary:
+//				break;
+//			}
+//		}
 	}
 }

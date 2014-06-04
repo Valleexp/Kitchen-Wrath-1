@@ -9,41 +9,83 @@ public class Player : MonoBehaviour {
 	public float playerJump = 0.0f;
 	public float playerSpeed = 0.0f;
 
-	public bool toggleJump = false;
+	[HideInInspector]public bool toggleJump = false;
+	[HideInInspector]public bool toggleSlash = false;
+
 	private bool isOnGround = false;
+
+	[HideInInspector]public int slashChefCounter = 0;
+
+	private GameObject highscore = null;
 
 	// Use this for initialization
 	void Start () {
-
+		highscore = GameObject.FindGameObjectWithTag("Highscore");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.position += Vector3.right * Time.deltaTime * playerSpeed;
+
 		if(toggleJump && isOnGround)
 		{
 			Jump();
+		}
+			
+		if(toggleSlash)
+		{
+			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.CHEF, false);
+			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.FOOD, false);
+			Slash();
+		}
+		else
+		{
+			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.CHEF, true);
+			Physics2D.IgnoreLayerCollision((int)LayerData.LAYERVALUE.PLAYER, (int)LayerData.LAYERVALUE.FOOD, true);
+			UnSlash();
 		}
 	}
 
 	void Jump()
 	{
-		rigidbody2D.AddForce(new Vector2(0.0f, playerJump));
+		rigidbody2D.AddForce(new Vector2(0.0f, playerJump), ForceMode2D.Impulse);
 	}
 
-	void OnCollisionEnter2D(Collision2D platform)
+	void Slash()
 	{
-		if(platform.gameObject.tag == "Platform")
+		renderer.material.color = Color.red;
+	}
+
+	void UnSlash()
+	{
+		renderer.material.color = Color.white;
+	}
+
+	void OnCollisionEnter2D(Collision2D obj)
+	{
+		switch(obj.gameObject.tag)
 		{
+		case "Platform":
 			isOnGround = true;
+			break;
+		case "Chef":
+			slashChefCounter++;
+			break;
+		case "Food":
+			highscore.GetComponent<Score>().score = 10;
+			highscore.GetComponent<Score>().scoreMultiplyer = 1;
+			highscore.GetComponent<Score>().addScore = true;
+			break;
 		}
 	}
 
-	void OnCollisionExit2D(Collision2D platform)
+	void OnCollisionExit2D(Collision2D obj)
 	{
-		if(platform.gameObject.tag == "Platform")
+		switch(obj.gameObject.tag)
 		{
+		case "Platform":
 			isOnGround = false;
+			break;
 		}
 	}
 }
