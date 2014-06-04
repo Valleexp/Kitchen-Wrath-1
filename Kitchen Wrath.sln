@@ -1,9 +1,13 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{CFE6C4C7-91E5-2C3E-D749-64EF6E0FFAD8}") = "Kitchen Wrath", "Assembly-CSharp-firstpass-vs.csproj", "{F3D16AA9-0A02-4BF3-3186-9D676C44974D}"
+Project("{CFE6C4C7-91E5-2C3E-D749-64EF6E0FFAD8}") = "Kitchen Wrath", "Assembly-CSharp-firstpass.csproj", "{F3D16AA9-0A02-4BF3-3186-9D676C44974D}"
 EndProject
-Project("{CFE6C4C7-91E5-2C3E-D749-64EF6E0FFAD8}") = "Kitchen Wrath", "Assembly-CSharp-vs.csproj", "{7853B239-F9C2-798A-A09B-0BD428E34082}"
+Project("{CFE6C4C7-91E5-2C3E-D749-64EF6E0FFAD8}") = "Kitchen Wrath", "Assembly-CSharp.csproj", "{7853B239-F9C2-798A-A09B-0BD428E34082}"
+EndProject
+Project("{CFE6C4C7-91E5-2C3E-D749-64EF6E0FFAD8}") = "Kitchen Wrath", "Assembly-UnityScript-firstpass.unityproj", "{1ECD7FD5-488B-5667-3CE5-4E720EE04F60}"
+EndProject
+Project("{CFE6C4C7-91E5-2C3E-D749-64EF6E0FFAD8}") = "Kitchen Wrath", "Assembly-UnityScript.unityproj", "{B1EB7267-804C-54F1-961F-E893F318685E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,11 +23,19 @@ Global
 		{7853B239-F9C2-798A-A09B-0BD428E34082}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7853B239-F9C2-798A-A09B-0BD428E34082}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7853B239-F9C2-798A-A09B-0BD428E34082}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ECD7FD5-488B-5667-3CE5-4E720EE04F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ECD7FD5-488B-5667-3CE5-4E720EE04F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ECD7FD5-488B-5667-3CE5-4E720EE04F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ECD7FD5-488B-5667-3CE5-4E720EE04F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1EB7267-804C-54F1-961F-E893F318685E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1EB7267-804C-54F1-961F-E893F318685E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1EB7267-804C-54F1-961F-E893F318685E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1EB7267-804C-54F1-961F-E893F318685E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-				GlobalSection(MonoDevelopProperties) = preSolution
+			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
