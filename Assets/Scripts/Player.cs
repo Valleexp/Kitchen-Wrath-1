@@ -17,10 +17,12 @@ public class Player : MonoBehaviour {
 	[HideInInspector]public int slashChefCounter = 0;
 
 	private GameObject highscore = null;
+	private GameObject levelLoader = null;
 
 	// Use this for initialization
 	void Start () {
 		highscore = GameObject.FindGameObjectWithTag("Highscore");
+		levelLoader = GameObject.Find("LevelLoader");
 	}
 	
 	// Update is called once per frame
@@ -71,10 +73,24 @@ public class Player : MonoBehaviour {
 		case "Chef":
 			slashChefCounter++;
 			break;
-		case "Food":
-			highscore.GetComponent<Score>().score = 10;
-			highscore.GetComponent<Score>().scoreMultiplyer = 1;
-			highscore.GetComponent<Score>().addScore = true;
+//		case "Food":
+//			highscore.GetComponent<Score>().SetScoreProperties(10, 1);
+//			break;
+		case "Chicken":
+			highscore.GetComponent<Score>().SetScoreProperties(4, 1);
+			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CHICKEN);
+			break;
+		case "Egg":
+			highscore.GetComponent<Score>().SetScoreProperties(3, 1);
+			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.EGG);
+			break;
+		case "Potato":
+			highscore.GetComponent<Score>().SetScoreProperties(2, 1);
+			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.POTATO);
+			break;
+		case "Cabbage":
+			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
+			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CABBAGE);
 			break;
 		}
 	}

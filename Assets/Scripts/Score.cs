@@ -43,4 +43,11 @@ public class Score : MonoBehaviour {
 			addScore = false;
 		}
 	}
+
+	public void SetScoreProperties(int newScore, int newScoreMultiplyer)
+	{
+		score = newScore;
+		scoreMultiplyer = newScoreMultiplyer;
+		addScore = true;
+	}
 }

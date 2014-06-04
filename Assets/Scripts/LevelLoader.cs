@@ -12,12 +12,16 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject police;
 	public GameObject chef;
 	public GameObject food;
+	public GameObject chicken;
+	public GameObject egg;
+	public GameObject potato;
+	public GameObject cabbage;
 	public GameObject obstacle;
 	public GameObject highscore;
 	
 	[HideInInspector]public List<GameObject> listOfPlatforms = new List<GameObject>();
 	[HideInInspector]public List<GameObject> listOfChefs = new List<GameObject>();
-	[HideInInspector]public List<GameObject> listOfFoods = new List<GameObject>();
+	public List<GameObject> listOfFoods = new List<GameObject>();
 	
 	public float platformStartX = 0.0f;
 	public float platformStartY = 0.0f;
@@ -56,7 +60,9 @@ public class LevelLoader : MonoBehaviour {
 
 		for(int i = 0; i < amountOfFoodsAtOneTime; i++)
 		{
-			InitObjList(food, listOfFoods, (i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)));
+//			InitObjList(food, listOfFoods, (i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)));
+			InitFoodListRandom((i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)), 
+			                   (int)INGREDIENT.CHICKEN, (int)INGREDIENT.CABBAGE);
 		}
 	}
 
@@ -89,6 +95,27 @@ public class LevelLoader : MonoBehaviour {
 		{
 			listOfObjs.Add(obj);
 			listOfObjs[listOfObjs.Count - 1] = SpawnObject(listOfObjs[listOfObjs.Count - 1], new Vector2(posX, posY));
+		}
+	}
+
+	void InitFoodListRandom(float posX, float posY, int min, int max)
+	{
+		int foodValue = RandomsGenerator.RandomInt(min, max);
+
+		switch(foodValue)
+		{
+		case (int)INGREDIENT.CHICKEN:
+			InitObjList(chicken, listOfFoods, posX, posY);
+			break;
+		case (int)INGREDIENT.EGG:
+			InitObjList(egg, listOfFoods, posX, posY);
+			break;
+		case (int)INGREDIENT.POTATO:
+			InitObjList(potato, listOfFoods, posX, posY);
+			break;
+		case (int)INGREDIENT.CABBAGE:
+			InitObjList(cabbage, listOfFoods, posX, posY);
+			break;
 		}
 	}
 }
