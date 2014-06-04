@@ -24,13 +24,11 @@ public class Highscore : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		TextDisplay();
-		GetComponent<TextMesh>().transform.position = new Vector3(mainCamera.GetComponent<MainCamera>().transform.position.x + highscoreX, 
-		                                                          GetComponent<TextMesh>().transform.position.y);
 	}
 	
 	private void TextDisplay()
 	{
 		highscoreDisplay = "SCORE: " + GetComponent<Score>().highscore;
-		GetComponent<TextMesh>().text = highscoreDisplay;
+		GetComponent<GUIText>().text = highscoreDisplay;
 	}
 }

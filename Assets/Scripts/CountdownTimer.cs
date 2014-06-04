@@ -18,7 +18,7 @@ public class CountdownTimer : MonoBehaviour {
 	{
 		mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 		TextDisplay();
-		GetComponent<TextMesh>().transform.position = new Vector3(countdownTimerX, countdownTimerY);
+		GetComponent<GUIText>().transform.position = new Vector3(countdownTimerX, countdownTimerY);
 		GetComponent<Timer>().StartTime();
 	}
 
@@ -29,8 +29,6 @@ public class CountdownTimer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		TextDisplay();
-		GetComponent<TextMesh>().transform.position = new Vector3(mainCamera.GetComponent<MainCamera>().transform.position.x, 
-			              											GetComponent<TextMesh>().transform.position.y);
 	}
 
 	private void TextDisplay()
@@ -63,7 +61,7 @@ public class CountdownTimer : MonoBehaviour {
 		}
 
 		countdownDisplay = countdownHours + ":" + countdownMinutes + ":" + countdownSeconds;
-		GetComponent<TextMesh>().text = countdownDisplay;
+		GetComponent<GUIText>().text = countdownDisplay;
 	}
 
 	private bool HoursLessThanTen()
