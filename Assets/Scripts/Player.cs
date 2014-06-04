@@ -35,7 +35,7 @@ public class Player : MonoBehaviour {
 		{
 			Jump();
 		}
-			
+
 		if(toggleSlash)
 		{
 			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, false);
@@ -69,6 +69,11 @@ public class Player : MonoBehaviour {
 	void UnSlash()
 	{
 		GetComponentInChildren<SpriteRenderer>().color = Color.white;
+	}
+
+	private void Accelerate()
+	{
+		playerSpeed += playerAcceleration;
 	}
 
 	void OnCollisionEnter2D(Collision2D obj)
@@ -125,9 +130,24 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	private void Accelerate()
-	{
-		playerSpeed += playerAcceleration;
-	}
+//	void OnTriggerEnter2D(Collider2D obj)
+//	{
+//		switch(obj.gameObject.tag)
+//		{
+//		case "Chef":
+//			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, false);
+//			break;
+//		}
+//	}
+//
+//	void OnTriggerExit2D(Collider2D obj)
+//	{
+//		switch(obj.gameObject.tag)
+//		{
+//		case "Chef":
+//			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, true);
+//			break;
+//		}
+//	}
 }
 	
