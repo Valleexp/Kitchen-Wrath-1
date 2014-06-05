@@ -25,7 +25,7 @@ public class Recipe{
 	{
 		toConvert = toConvert.ToUpper ();
 
-		Debug.Log ("Ingredient: " + (int)System.Enum.Parse(typeof(INGREDIENT), toConvert));
+		//Debug.Log ("Ingredient: " + (int)System.Enum.Parse(typeof(INGREDIENT), toConvert));
 		recipe.Add ((INGREDIENT)System.Enum.Parse(typeof(INGREDIENT), toConvert));
 	}
 

@@ -13,12 +13,12 @@ public class IngredientObtainer : MonoBehaviour {
 	
 		if(Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CHICKEN);
+			GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CARROT);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.EGG);
+			GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CABBAGE);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Alpha3))
@@ -28,7 +28,7 @@ public class IngredientObtainer : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.Alpha4))
 		{
-			GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CABBAGE);
+			GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.PUMPKIN);
 		}
 
 	}

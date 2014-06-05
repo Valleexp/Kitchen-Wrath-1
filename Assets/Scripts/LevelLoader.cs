@@ -45,7 +45,7 @@ public class LevelLoader : MonoBehaviour {
 		InitObj(countdownTimer, countdownTimer.GetComponent<CountdownTimer>().countdownTimerX, countdownTimer.GetComponent<CountdownTimer>().countdownTimerY);
 		InitObj(highscore, highscore.GetComponent<Highscore>().highscoreX, highscore.GetComponent<Highscore>().highscoreY);
 		InitObj(buttons, 0.0f, 0.0f);
-		InitObj(player, player.GetComponent<Player>().playerX, player.GetComponent<Player>().playerY);
+		InitObj(ref player, player.GetComponent<Player>().playerX, player.GetComponent<Player>().playerY);
 		InitObj(platformRemover, platformRemoverStartX, 0.0f);
 
 		for(int i = 0; i < amountOfPlatformsAtOneTime; i++)
@@ -85,6 +85,14 @@ public class LevelLoader : MonoBehaviour {
 	}
 
 	void InitObj(GameObject obj, float posX, float posY)
+	{
+		if(obj != null)
+		{
+			obj = SpawnObject(obj, new Vector2(posX, posY));
+		}
+	}
+
+	void InitObj(ref GameObject obj, float posX, float posY)
 	{
 		if(obj != null)
 		{

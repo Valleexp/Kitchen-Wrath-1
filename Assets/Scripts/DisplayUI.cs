@@ -23,6 +23,8 @@ public class DisplayUI : MonoBehaviour {
 	public Texture potatoTexture;
 	public Texture pumpkinTexture;
 	public Texture tomatoTexture;
+
+	public string completedRecipe = "";
 	
 
 	// Put in 3 default no ingredient textures
@@ -69,7 +71,7 @@ public class DisplayUI : MonoBehaviour {
 	public void ResetIngredientBoxTextures()
 	{
 		//Reset the textures
-		for(int i = 0; i < ingredients.Count; i++)
+		for(int i = 0; i < amountOfBoxes; i++)
 		{
 			ingredients[i] = defaultTexture;
 		}
@@ -101,6 +103,9 @@ public class DisplayUI : MonoBehaviour {
 		{
 			GUI.DrawTexture(new Rect(ingredientBoxX + 130, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[2], ScaleMode.StretchToFill, true, 10.0F);
 		}
+
+		GUI.Label(new Rect(10, 10, 100, 20), completedRecipe);
+
 	}
 
 }

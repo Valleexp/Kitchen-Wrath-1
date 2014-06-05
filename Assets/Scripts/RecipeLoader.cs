@@ -32,7 +32,7 @@ public class RecipeLoader : MonoBehaviour {
 
 		foreach (XmlNode recipeInfo in allRecipes)
 		{
-			Debug.Log("Number of Recipes: " + i);
+			//Debug.Log("Number of Recipes: " + i);
 
 			XmlNodeList recipeContent = recipeInfo.ChildNodes;
 			obj = new Dictionary<string,string>();
@@ -45,13 +45,13 @@ public class RecipeLoader : MonoBehaviour {
 				if(recipeItems.Name == "name")
 				{
 					newRecipe.recipeName = recipeItems.InnerText;
-					Debug.Log("Name: " + newRecipe.recipeName);
+					//Debug.Log("Name: " + newRecipe.recipeName);
 				}
 
 				if(recipeItems.Name == "description")
 				{
 					newRecipe.recipeDescription = recipeItems.InnerText;
-					Debug.Log("Description: " + newRecipe.recipeDescription);
+					//Debug.Log("Description: " + newRecipe.recipeDescription);
 				}
 
 				if(recipeItems.Name == "ingredient")
@@ -67,5 +67,7 @@ public class RecipeLoader : MonoBehaviour {
 
 			i++;
 		}
+			Debug.Log("Added this number of recipes: " + i);
+		
 	}
 }

@@ -2,11 +2,11 @@
 	
 	<!--  Recipes are to be formatted in this way. The order of ingredients is important -->
 	<recipe>
-		<name>Salad</name>
-		<description>The First Recipe Ever Made</description>
-		<ingredient>cabbage</ingredient>
+		<name>Carrot Soup</name>
+		<description>Carrot Soup Yum!</description>
 		<ingredient>carrot</ingredient>
-		<ingredient>potato</ingredient>
+		<ingredient>carrot</ingredient>
+		<ingredient>carrot</ingredient>
 	</recipe>
 	
 	<recipe>
@@ -18,12 +18,14 @@
 	</recipe>
 	
 	<recipe>
-		<name>Carrot Soup</name>
-		<description>Carrot Soup Yum!</description>
+		<name>Salad</name>
+		<description>The First Recipe Ever Made</description>
+		<ingredient>cabbage</ingredient>
 		<ingredient>carrot</ingredient>
-		<ingredient>carrot</ingredient>
-		<ingredient>carrot</ingredient>
+		<ingredient>potato</ingredient>
 	</recipe>
+	
+
 	
 	<recipe>
 		<name>Pumpkin Soup</name>
