@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: e108f5a6f914d4433ab552f3b2f38061
+=======
 guid: 33aca82a63091d34894521015affd867
+>>>>>>> Sprite sheets added
 TextureImporter:
   serializedVersion: 2
   mipmaps:
