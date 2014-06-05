@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InputManager : MonoBehaviour {
 
-	private GameObject player = null;
+	public GameObject player = null;
 	private GameObject jumpButton = null;
 	private GameObject slashButton = null;
 
@@ -30,34 +30,38 @@ public class InputManager : MonoBehaviour {
 		{
 			player.GetComponent<Player>().toggleSlash = true;
 		}
-		else
-		{
-			player.GetComponent<Player>().toggleSlash = false;
-		}
 
 		if(Input.touchCount > 0)
 		{
-
-
-			if(jumpButton.guiTexture.HitTest(Input.GetTouch(0).position) && Input.touches[0].phase == TouchPhase.Began)
+			foreach(Touch touch in Input.touches)
 			{
-				player.GetComponent<Player>().toggleJump = true;
-			}
-			else
-			{
-				player.GetComponent<Player>().toggleJump = false;
-			}
+				switch(touch.phase)
+				{
+					case TouchPhase.Began:
+						if(jumpButton.guiTexture.HitTest(Input.GetTouch(0).position))
+						{
+							player.GetComponent<Player>().toggleJump = true;
+						}
 
-			if(slashButton.guiTexture.HitTest(Input.GetTouch(0).position) && Input.touches[0].phase == TouchPhase.Began)
-			{
-				player.GetComponent<Player>().toggleSlash = true;
+						if(slashButton.guiTexture.HitTest(Input.GetTouch(0).position))
+						{
+							player.GetComponent<Player>().toggleSlash = true;
+						}
+						break;
+					case TouchPhase.Canceled:
+						break;
+					case TouchPhase.Ended:
+						if(!jumpButton.guiTexture.HitTest(Input.GetTouch(0).position))
+						{
+							player.GetComponent<Player>().toggleJump = false;
+						}
+						break;
+					case TouchPhase.Moved:
+						break;
+					case TouchPhase.Stationary:
+						break;
+				}
 			}
-			else
-			{
-				player.GetComponent<Player>().toggleSlash = false;
-			}
-		}
-
 //		foreach(Touch touch in Input.touches)
 //		{
 //			switch(touch.phase)
@@ -83,6 +87,6 @@ public class InputManager : MonoBehaviour {
 //			case iPhoneTouchPhase.Stationary:
 //				break;
 //			}
-//		}
+		}
 	}
 }

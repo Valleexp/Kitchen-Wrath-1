@@ -61,9 +61,9 @@ public class PlatformSpawner : MonoBehaviour {
 		if(Random.value > 0.5)
 		{
 			float tempHold = Random.Range(randomGapYMin, randomGapYMax);
-			Debug.Log("Val: "+tempHold);
+//			Debug.Log("Val: "+tempHold);
 			lastPlatformEdgeY += tempHold;
-			Debug.Log("lastPlatformEdgeY: "+lastPlatformEdgeY);
+//			Debug.Log("lastPlatformEdgeY: "+lastPlatformEdgeY);
 			if(lastPlatformEdgeY > highestY)
 			{
 				lastPlatformEdgeY = highestY;

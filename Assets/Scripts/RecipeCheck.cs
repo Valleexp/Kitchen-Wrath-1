@@ -20,7 +20,7 @@ public class RecipeCheck : MonoBehaviour {
 		//1. check against lists that have the highest amount of ingredients in them
 		//2. At any point in time if we find that we have a match we break out of the loop and we return a recipe
 		//3. if no such match was found with the highest count box, we remove one box and then try again until we left 3 boxes and then call it no recipe match
-
+		Debug.Log("RecipeListCount" + recipeList.Count);
 		for(int i = 0; i < recipeList.Count; i++)
 		{
 			bool isEqual = new HashSet<INGREDIENT>(recipeList[i].recipe).SetEquals(playerIngredientList);
