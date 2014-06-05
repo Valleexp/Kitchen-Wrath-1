@@ -105,4 +105,9 @@ public class Timer : MonoBehaviour {
 	{
 		ticks = 0.0f;
 	}
+
+	public bool CountdownTimerStarted()
+	{
+		return countdown;
+	}
 }

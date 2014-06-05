@@ -2,17 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum INGREDIENT
-{
-	CHICKEN = 0,
-	EGG,
-	POTATO,
-	CABBAGE,
-	CARROT,
-	PUMPKIN,
-	TOMATO
-};
-
 public class Recipe{
 
 	public string recipeName = "";

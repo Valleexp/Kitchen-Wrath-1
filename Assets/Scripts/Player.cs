@@ -21,15 +21,28 @@ public class Player : MonoBehaviour {
 	private GameObject highscore = null;
 	private GameObject levelLoader = null;
 
+	private Animator playerAnimator = null;
+
 	// Use this for initialization
 	void Start () {
 		highscore = GameObject.FindGameObjectWithTag("Highscore");
 		levelLoader = GameObject.Find("LevelLoader");
+
+		playerAnimator = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.position += Vector3.right * Time.deltaTime * playerSpeed;
+		
+		if(isOnGround)
+		{
+			Run();
+		}
+		else
+		{
+			InAir();
+		}
 
 		if(toggleJump && isOnGround)
 		{
@@ -38,14 +51,14 @@ public class Player : MonoBehaviour {
 
 		if(toggleSlash)
 		{
-			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, false);
-			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.FOOD, false);
 			Slash();
+			if(!isOnGround)
+			{
+				JumpSlash();
+			}
 		}
 		else
 		{	
-			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, true);
-			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.FOOD, true);
 			UnSlash();
 		}
 
@@ -56,19 +69,43 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void Jump()
+	private void Jump()
 	{
 		rigidbody2D.AddForce(new Vector2(0.0f, playerJump), ForceMode2D.Impulse);
 	}
 
-	void Slash()
+	private void InAir()
 	{
-		GetComponentInChildren<SpriteRenderer>().color = Color.red;
+		SetPlayerState(PLAYER_STATE.PLAYER_JUMPING);
 	}
 
-	void UnSlash()
+	private void JumpSlash()
 	{
-		GetComponentInChildren<SpriteRenderer>().color = Color.white;
+		SetPlayerState(PLAYER_STATE.PLAYER_JUMP_ATTACK);
+	}
+
+	private void Slash()
+	{
+		Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.PLAYER, (int)LAYER_VALUE.CHEF, false);
+		Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.PLAYER, (int)LAYER_VALUE.FOOD, false);
+
+		SetPlayerState(PLAYER_STATE.PLAYER_RUN_ATTACK);
+
+		if(!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("PlayerRunAttack"))
+		{
+			toggleSlash = false;
+		}
+	}
+
+	private void UnSlash()
+	{
+		Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.PLAYER, (int)LAYER_VALUE.CHEF, true);
+		Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.PLAYER, (int)LAYER_VALUE.FOOD, true);
+	}
+
+	private void Run()
+	{
+		SetPlayerState(PLAYER_STATE.PLAYER_RUNNING);
 	}
 
 	private void Accelerate()
@@ -86,9 +123,6 @@ public class Player : MonoBehaviour {
 		case "Chef":
 			slashChefCounter++;
 			break;
-//		case "Food":
-//			highscore.GetComponent<Score>().SetScoreProperties(10, 1);
-//			break;
 		case "Chicken":
 			highscore.GetComponent<Score>().SetScoreProperties(4, 1);
 			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CHICKEN);
@@ -130,24 +164,9 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-//	void OnTriggerEnter2D(Collider2D obj)
-//	{
-//		switch(obj.gameObject.tag)
-//		{
-//		case "Chef":
-//			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, false);
-//			break;
-//		}
-//	}
-//
-//	void OnTriggerExit2D(Collider2D obj)
-//	{
-//		switch(obj.gameObject.tag)
-//		{
-//		case "Chef":
-//			Physics2D.IgnoreLayerCollision((int)LAYERVALUE.PLAYER, (int)LAYERVALUE.CHEF, true);
-//			break;
-//		}
-//	}
+	private void SetPlayerState(PLAYER_STATE pState)
+	{
+		playerAnimator.SetInteger("PlayerState", (int)pState);
+	}
 }
 	

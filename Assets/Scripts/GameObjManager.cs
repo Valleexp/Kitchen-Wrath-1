@@ -18,9 +18,9 @@ public class GameObjManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Physics2D.IgnoreLayerCollision((int)LAYERVALUE.POLICE, (int)LAYERVALUE.CHEF, true);
-		Physics2D.IgnoreLayerCollision((int)LAYERVALUE.POLICE, (int)LAYERVALUE.FOOD, true);
-		Physics2D.IgnoreLayerCollision((int)LAYERVALUE.CHEF, (int)LAYERVALUE.FOOD, true);
+		Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.POLICE, (int)LAYER_VALUE.CHEF, true);
+		Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.POLICE, (int)LAYER_VALUE.FOOD, true);
+		Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.CHEF, (int)LAYER_VALUE.FOOD, true);
 	
 		CheckChefCounter();
 	}
