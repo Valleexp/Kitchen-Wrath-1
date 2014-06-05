@@ -23,18 +23,18 @@ public class RecipeCheck : MonoBehaviour {
 		
 		for(int i = 0; i < recipeList.Count; i++)
 		{
-			bool isEqual = new HashSet<INGREDIENT>(recipeList[i].recipe).SetEquals(playerIngredientList);
+//			bool isEqual = new HashSet<INGREDIENT>(recipeList[i].recipe).SetEquals(playerIngredientList);
 			Debug.Log("Amount of times we have tried checking!");
-//			bool isEqual = true;
-//
-//			for(int j = 0; j < playerIngredientList.Count; j++)
-//			{
-//				if(recipeList[i].recipe[j] != playerIngredientList[j])
-//				{
-//					isEqual = false;
-//					break;
-//				}
-//			}
+			bool isEqual = true;
+
+			for(int j = 0; j < playerIngredientList.Count; j++)
+			{
+				if(recipeList[i].recipe[j] != playerIngredientList[j])
+				{
+					isEqual = false;
+					break;
+				}
+			}
 
 			//Debug.Log("Compared to recipe: " + recipeList[i].recipe[0] + recipeList[i].recipe[1] + recipeList[i].recipe[2]);
 			//Debug.Log("Player Ingredient list:  " + playerIngredientList[0] + playerIngredientList[1] + playerIngredientList[2]);
