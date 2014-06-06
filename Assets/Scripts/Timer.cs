@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour {
 	public float delay = 0.0f;
 
 	private float ticks = 0.0f;
-	private bool countdown = false;
+	private bool countdownStart = false;
 
 	void Awake()
 	{
@@ -28,12 +28,12 @@ public class Timer : MonoBehaviour {
 
 	public void StartTime()
 	{
-		countdown = true;
+		countdownStart = true;
 	}
 
 	private void CountdownTimer()
 	{
-		if(countdown)
+		if(countdownStart)
 		{
 			if(TicksPastDelay())
 			{
@@ -61,7 +61,7 @@ public class Timer : MonoBehaviour {
 				
 				if(hours <= 0 && minutes <= 0 && seconds <= 0)
 				{
-					countdown = false;
+					countdownStart = false;
 				}
 				ResetTicks();
 			}
@@ -108,6 +108,6 @@ public class Timer : MonoBehaviour {
 
 	public bool CountdownTimerStarted()
 	{
-		return countdown;
+		return countdownStart;
 	}
 }

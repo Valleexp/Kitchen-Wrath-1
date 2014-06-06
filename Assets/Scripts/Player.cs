@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
 		if(toggleSlash)
 		{
 			Slash();
-			if(!isOnGround)
+			if(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("PlayerJumping"))
 			{
 				JumpSlash();
 			}
@@ -163,6 +163,44 @@ public class Player : MonoBehaviour {
 			break;
 		}
 	}
+
+//	void OnTriggerEnter2D(Collider2D obj)
+//	{
+//		switch(obj.gameObject.tag)
+//		{
+//		case "Chef":
+//			slashChefCounter++;
+//			break;
+//		case "Chicken":
+//			highscore.GetComponent<Score>().SetScoreProperties(4, 1);
+//			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CHICKEN);
+//			break;
+//		case "Egg":
+//			highscore.GetComponent<Score>().SetScoreProperties(3, 1);
+//			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.EGG);
+//			break;
+//		case "Potato":
+//			highscore.GetComponent<Score>().SetScoreProperties(2, 1);
+//			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.POTATO);
+//			break;
+//		case "Cabbage":
+//			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
+//			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CABBAGE);
+//			break;
+//		case "Carrot":
+//			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
+//			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.CARROT);
+//			break;
+//		case "Pumpkin":
+//			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
+//			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.PUMPKIN);
+//			break;
+//		case "Tomato":
+//			highscore.GetComponent<Score>().SetScoreProperties(1, 1);
+//			levelLoader.GetComponent<RecipeCheck>().AddIngredientToList(INGREDIENT.TOMATO);
+//			break;
+//		}
+//	}
 
 	private void SetPlayerState(PLAYER_STATE pState)
 	{
