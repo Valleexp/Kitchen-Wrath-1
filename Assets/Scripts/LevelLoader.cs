@@ -54,18 +54,18 @@ public class LevelLoader : MonoBehaviour {
 		}
 		newPlatformPositionX = (float)(platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime));
 
-		InitObj(police, platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime), platformStartY);
+		//InitObj(police, platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime), platformStartY);
 
 		for(int i = 0; i < amountOfChefsAtOneTime; i++)
 		{
-			InitObjList(chef, listOfChefs, chef.GetComponent<Chef>().chefX + (i * Random.Range(2, 10)), chef.GetComponent<Chef>().chefY);
+			//InitObjList(chef, listOfChefs, chef.GetComponent<Chef>().chefX + (i * Random.Range(2, 10)), chef.GetComponent<Chef>().chefY);
 		}
 
 		for(int i = 0; i < amountOfFoodsAtOneTime; i++)
 		{
 //			InitObjList(food, listOfFoods, (i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)));
-			InitFoodListRandom((i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)), 
-			                   (int)INGREDIENT.POTATO, (int)INGREDIENT.TOMATO);
+//			InitFoodListRandom((i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)), 
+//			                   (int)INGREDIENT.POTATO, (int)INGREDIENT.TOMATO);
 		}
 	}
 

@@ -21,4 +21,9 @@ public class RandomsGenerator : MonoBehaviour {
 	{
 		return Random.Range(min, max);
 	}
+
+	public static float RandomFloat(float min, float max)
+	{
+		return Random.Range(min, max);
+	}
 }

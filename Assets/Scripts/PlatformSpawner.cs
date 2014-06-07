@@ -51,38 +51,49 @@ public class PlatformSpawner : MonoBehaviour {
 		int platformType = Random.Range(0, typeOfPlatforms.Length);
 		
 		// half/width + gap + half/width to obtain the position
-		
+
 		// calculate gap 
 		lastPlatformEdgeX += Random.Range(randomGapXMin, randomGapXMax);
 		
-		
-		// randomise up if the next platform is going to be higher or lower
-		if(Random.value > 0.5)
+		if(typeOfPlatforms[platformType].gameObject.tag == "Platform")
 		{
-			float tempHold = Random.Range(randomGapYMin, randomGapYMax);
-//			Debug.Log("Val: "+tempHold);
-			lastPlatformEdgeY += tempHold;
-		//	Debug.Log("lastPlatformEdgeY: "+lastPlatformEdgeY);
-			if(lastPlatformEdgeY > highestY)
+			// randomise up if the next platform is going to be higher or lower
+			if(Random.value > 0.5)
 			{
-				lastPlatformEdgeY = highestY;
+				float tempHold = Random.Range(randomGapYMin, randomGapYMax);
+	//			Debug.Log("Val: "+tempHold);
+				lastPlatformEdgeY += tempHold;
+			//	Debug.Log("lastPlatformEdgeY: "+lastPlatformEdgeY);
+				if(lastPlatformEdgeY > highestY)
+				{
+					lastPlatformEdgeY = highestY;
+				}
 			}
+			else
+			{
+				lastPlatformEdgeY = Random.Range(lowestY, lastPlatformEdgeY);
+				if(lastPlatformEdgeY < lowestY)
+				{
+					lastPlatformEdgeY = lowestY;
+				}
+			}
+			
+			// position now past halfway left at the center of the new randomized platform
+			lastPlatformEdgeX += (typeOfPlatforms[platformType].transform.localScale.x / 2);
+			
+			// Spawn a platform
+			platforms.Add(Instantiate(typeOfPlatforms[platformType], new Vector2(lastPlatformEdgeX, lastPlatformEdgeY), Quaternion.identity) as GameObject);
+			lastPlatformEdgeX += (typeOfPlatforms[platformType].transform.localScale.x / 2);
 		}
-		else
+		else if(typeOfPlatforms[platformType].gameObject.tag == "DoublePlatform")
 		{
-			lastPlatformEdgeY = Random.Range(lowestY, lastPlatformEdgeY);
-			if(lastPlatformEdgeY < lowestY)
-			{
-				lastPlatformEdgeY = lowestY;
-			}
+			// position now past halfway left at the center of the new randomized platform
+			lastPlatformEdgeX += (typeOfPlatforms[platformType].transform.localScale.x / 2);
+
+			// Spawn a platform
+			platforms.Add(Instantiate(typeOfPlatforms[platformType], new Vector2(lastPlatformEdgeX, 0.0f), Quaternion.identity) as GameObject);
+			lastPlatformEdgeX += (typeOfPlatforms[platformType].transform.localScale.x / 2);
 		}
-		
-		// position now past halfway left at the center of the new randomized platform
-		lastPlatformEdgeX += (typeOfPlatforms[platformType].transform.localScale.x / 2);
-		
-		// Spawn a platform
-		platforms.Add(Instantiate(typeOfPlatforms[platformType], new Vector2(lastPlatformEdgeX, lastPlatformEdgeY), Quaternion.identity) as GameObject);
-		lastPlatformEdgeX += (typeOfPlatforms[platformType].transform.localScale.x / 2);
 	}
 	
 	// Update is called once per frame

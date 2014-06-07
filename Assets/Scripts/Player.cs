@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position += Vector3.right * Time.deltaTime * playerSpeed;
+		//Debug.Log ("Bounds size: " + gameObject.collider2D.bounds.extents.x);
 		
 		if(isOnGround)
 		{

@@ -14,8 +14,7 @@ public class GameOverCheck : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Debug.Log ("Player's position: " + player.transform.position);
-
+		//Debug.Log ("Player's position: " + player.transform.position);
 
 		// when the player hits -10 on the y we assume the player has died and we gameover
 		if(player.transform.position.y < -10.0f)
