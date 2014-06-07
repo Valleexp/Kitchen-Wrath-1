@@ -21,6 +21,8 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject tomato;
 	public GameObject obstacle;
 	public GameObject highscore;
+	public GameObject background;
+	public GameObject midground;
 	
 	[HideInInspector]public List<GameObject> listOfPlatforms = new List<GameObject>();
 	[HideInInspector]public List<GameObject> listOfChefs = new List<GameObject>();
@@ -42,11 +44,16 @@ public class LevelLoader : MonoBehaviour {
 	{
 		Screen.orientation = ScreenOrientation.AutoRotation;
 
-		InitObj(countdownTimer, countdownTimer.GetComponent<CountdownTimer>().countdownTimerX, countdownTimer.GetComponent<CountdownTimer>().countdownTimerY);
-		InitObj(highscore, highscore.GetComponent<Highscore>().highscoreX, highscore.GetComponent<Highscore>().highscoreY);
-		InitObj(buttons, 0.0f, 0.0f);
-		InitObj(ref player, player.GetComponent<Player>().playerX, player.GetComponent<Player>().playerY);
-		InitObj(platformRemover, platformRemoverStartX, 0.0f);
+		InitObj(ref background, 0.0f, 0.0f, 5.0f);
+		InitObj(ref midground, 0.0f, -4.5f, 2.0f);
+
+		InitObj(ref countdownTimer, countdownTimer.GetComponent<CountdownTimer>().countdownTimerX, 
+		        countdownTimer.GetComponent<CountdownTimer>().countdownTimerY, 0.0f);
+
+		InitObj(ref highscore, highscore.GetComponent<Highscore>().highscoreX, highscore.GetComponent<Highscore>().highscoreY, 0.0f);
+		InitObj(ref buttons, 0.0f, 0.0f, 0.0f);
+		InitObj(ref player, player.GetComponent<Player>().playerX, player.GetComponent<Player>().playerY, 0.0f);
+		InitObj(ref platformRemover, platformRemoverStartX, 0.0f, 0.0f);
 
 		for(int i = 0; i < amountOfPlatformsAtOneTime; i++)
 		{
@@ -54,18 +61,18 @@ public class LevelLoader : MonoBehaviour {
 		}
 		newPlatformPositionX = (float)(platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime));
 
-		//InitObj(police, platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime), platformStartY);
+//		InitObj(ref police, platformStartX + (platform.transform.localScale.x * amountOfPlatformsAtOneTime), platformStartY);
 
 		for(int i = 0; i < amountOfChefsAtOneTime; i++)
 		{
-			//InitObjList(chef, listOfChefs, chef.GetComponent<Chef>().chefX + (i * Random.Range(2, 10)), chef.GetComponent<Chef>().chefY);
+//			InitObjList(chef, ref listOfChefs, chef.GetComponent<Chef>().chefX + (i * Random.Range(2, 10)), chef.GetComponent<Chef>().chefY);
 		}
 
 		for(int i = 0; i < amountOfFoodsAtOneTime; i++)
 		{
 //			InitObjList(food, listOfFoods, (i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)));
-//			InitFoodListRandom((i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)), 
-//			                   (int)INGREDIENT.POTATO, (int)INGREDIENT.TOMATO);
+			InitFoodListRandom((i * Random.Range(2, 10)), platformStartY + ((i + 1) * Random.Range(2, 5)), 0.0f, 
+			                   (int)INGREDIENT.POTATO, (int)INGREDIENT.TOMATO);
 		}
 	}
 
@@ -79,62 +86,71 @@ public class LevelLoader : MonoBehaviour {
 
 	}
 
-	GameObject SpawnObject(GameObject gObj, Vector2 position)
+	GameObject SpawnObject(GameObject gObj, Vector3 position)
 	{
-		return (GameObject)Instantiate((Object)(gObj), new Vector3(position.x, position.y, 0.0f), Quaternion.identity);  
+		return (GameObject)Instantiate((Object)(gObj), new Vector3(position.x, position.y, position.z), Quaternion.identity);  
 	}
 
-	void InitObj(GameObject obj, float posX, float posY)
-	{
-		if(obj != null)
-		{
-			obj = SpawnObject(obj, new Vector2(posX, posY));
-		}
-	}
-
-	void InitObj(ref GameObject obj, float posX, float posY)
+	void InitObj(GameObject obj, float posX, float posY, float posZ)
 	{
 		if(obj != null)
 		{
-			obj = SpawnObject(obj, new Vector2(posX, posY));
+			obj = SpawnObject(obj, new Vector3(posX, posY, posZ));
 		}
 	}
 
-	void InitObjList(GameObject obj, List<GameObject> listOfObjs, float posX, float posY)
+	void InitObj(ref GameObject obj, float posX, float posY, float posZ)
+	{
+		if(obj != null)
+		{
+			obj = SpawnObject(obj, new Vector3(posX, posY, posZ));
+		}
+	}
+
+	void InitObjList(GameObject obj, List<GameObject> listOfObjs, float posX, float posY, float posZ)
 	{
 		if(obj != null)
 		{
 			listOfObjs.Add(obj);
-			listOfObjs[listOfObjs.Count - 1] = SpawnObject(listOfObjs[listOfObjs.Count - 1], new Vector2(posX, posY));
+			listOfObjs[listOfObjs.Count - 1] = SpawnObject(listOfObjs[listOfObjs.Count - 1], new Vector3(posX, posY, posZ));
 		}
 	}
 
-	void InitFoodListRandom(float posX, float posY, int min, int max)
+	void InitObjList(GameObject obj, ref List<GameObject> listOfObjs, float posX, float posY, float posZ)
+	{
+		if(obj != null)
+		{
+			listOfObjs.Add(obj);
+			listOfObjs[listOfObjs.Count - 1] = SpawnObject(listOfObjs[listOfObjs.Count - 1], new Vector3(posX, posY, posZ));
+		}
+	}
+
+	void InitFoodListRandom(float posX, float posY, float posZ, int min, int max)
 	{
 		int foodValue = RandomsGenerator.RandomInt(min, max);
 
 		switch(foodValue)
 		{
 		case (int)INGREDIENT.CHICKEN:
-			InitObjList(chicken, listOfFoods, posX, posY);
+			InitObjList(chicken, ref listOfFoods, posX, posY, posZ);
 			break;
 		case (int)INGREDIENT.EGG:
-			InitObjList(egg, listOfFoods, posX, posY);
+			InitObjList(egg, ref listOfFoods, posX, posY, posZ);
 			break;
 		case (int)INGREDIENT.POTATO:
-			InitObjList(potato, listOfFoods, posX, posY);
+			InitObjList(potato, ref listOfFoods, posX, posY, posZ);
 			break;
 		case (int)INGREDIENT.CABBAGE:
-			InitObjList(cabbage, listOfFoods, posX, posY);
+			InitObjList(cabbage, ref listOfFoods, posX, posY, posZ);
 			break;
 		case (int)INGREDIENT.CARROT:
-			InitObjList(carrot, listOfFoods, posX, posY);
+			InitObjList(carrot, ref listOfFoods, posX, posY, posZ);
 			break;
 		case (int)INGREDIENT.PUMPKIN:
-			InitObjList(pumpkin, listOfFoods, posX, posY);
+			InitObjList(pumpkin, ref listOfFoods, posX, posY, posZ);
 			break;
 		case (int)INGREDIENT.TOMATO:
-			InitObjList(tomato, listOfFoods, posX, posY);
+			InitObjList(tomato, ref listOfFoods, posX, posY, posZ);
 			break;
 		}
 	}

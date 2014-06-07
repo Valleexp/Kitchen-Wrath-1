@@ -20,6 +20,7 @@ public class Food : MonoBehaviour {
 		{
 			Recoil();
 		}
+		Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.FOOD, (int)LAYER_VALUE.FOOD, true);
 	}
 	
 	void Recoil()
@@ -34,6 +35,7 @@ public class Food : MonoBehaviour {
 		case "Player":
 			toggleRecoil = true;
 			Destroy(this.gameObject, destroyDelay);
+			collider2D.isTrigger = true;
 			break;
 		}
 	}

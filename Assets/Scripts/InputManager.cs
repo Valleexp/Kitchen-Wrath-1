@@ -55,6 +55,11 @@ public class InputManager : MonoBehaviour {
 						{
 							player.GetComponent<Player>().toggleJump = false;
 						}
+
+						if(!slashButton.guiTexture.HitTest(Input.GetTouch(0).position))
+						{
+							player.GetComponent<Player>().toggleSlash = false;
+						}
 						break;
 					case TouchPhase.Moved:
 						break;
