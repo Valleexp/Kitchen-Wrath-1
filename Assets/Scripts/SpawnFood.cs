@@ -49,7 +49,7 @@ public class SpawnFood : MonoBehaviour {
 				float foodExtentsX = listOfFood[typeOfFood].collider2D.bounds.extents.x;
 				float foodExtentsY = listOfFood[typeOfFood].collider2D.bounds.extents.y;
 				
-				Debug.Log(foodExtentsX);
+				//Debug.Log(foodExtentsX);
 				
 				float randomFoodX = RandomsGenerator.RandomFloat (gameObject.transform.position.x - platformExtentsX
 				                                                  , gameObject.transform.position.x + platformExtentsX);
