@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ec39f5f6497e2f49bc4e6b0f50e872b
+guid: 39881ee0d7e6d55468428316912015b1
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -42,63 +42,53 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Jump+Attack_SpriteSheet_0
+    - name: Chef_Run+Attack_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 2
         y: 3
-        width: 29
+        width: 22
+        height: 37
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chef_Run+Attack_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 3
+        width: 34
         height: 35
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump+Attack_SpriteSheet_1
+    - name: Chef_Run+Attack_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 38
+        x: 72
+        y: 3
+        width: 39
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chef_Run+Attack_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 3
+        width: 35
+        height: 29
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chef_Run+Attack_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 149
         y: 3
         width: 36
-        height: 34
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump+Attack_SpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 3
-        width: 37
-        height: 34
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump+Attack_SpriteSheet_3
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 3
-        width: 37
-        height: 34
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump+Attack_SpriteSheet_4
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 3
-        width: 37
-        height: 34
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump+Attack_SpriteSheet_5
-      rect:
-        serializedVersion: 2
-        x: 189
-        y: 3
-        width: 36
-        height: 34
+        height: 30
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
