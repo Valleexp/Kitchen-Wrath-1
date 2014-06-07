@@ -35,6 +35,7 @@ public class Food : MonoBehaviour {
 		case "Player":
 			toggleRecoil = true;
 			Destroy(this.gameObject, destroyDelay);
+			Physics2D.IgnoreLayerCollision((int)LAYER_VALUE.FOOD, (int)LAYER_VALUE.PROPS);
 //			collider2D.isTrigger = true;
 			break;
 		}
