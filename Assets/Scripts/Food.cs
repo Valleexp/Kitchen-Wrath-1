@@ -35,7 +35,7 @@ public class Food : MonoBehaviour {
 		case "Player":
 			toggleRecoil = true;
 			Destroy(this.gameObject, destroyDelay);
-			collider2D.isTrigger = true;
+//			collider2D.isTrigger = true;
 			break;
 		}
 	}
