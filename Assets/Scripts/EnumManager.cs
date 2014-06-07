@@ -3,7 +3,8 @@
 	PLAYER = 8,
 	CHEF,
 	POLICE,
-	FOOD
+	FOOD,
+	PROPS
 };
 
 public enum INGREDIENT

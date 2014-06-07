@@ -21,8 +21,10 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject tomato;
 	public GameObject obstacle;
 	public GameObject highscore;
+	public GameObject sky;
 	public GameObject background;
 	public GameObject midground;
+	public GameObject foreground;
 	
 	[HideInInspector]public List<GameObject> listOfPlatforms = new List<GameObject>();
 	[HideInInspector]public List<GameObject> listOfChefs = new List<GameObject>();
@@ -44,8 +46,10 @@ public class LevelLoader : MonoBehaviour {
 	{
 		Screen.orientation = ScreenOrientation.AutoRotation;
 
-		InitObj(ref background, 0.0f, 0.0f, 5.0f);
-		InitObj(ref midground, 0.0f, -4.5f, 2.0f);
+		InitObj(ref sky, 0.0f, 0.0f, 10.0f);
+		InitObj(ref background, 0.0f, 0.0f, 8.0f);
+		InitObj(ref midground, 0.0f, -3.0f, 5.0f);
+		InitObj(ref foreground, 0.0f, -3.5f, 3.0f);
 
 		InitObj(ref countdownTimer, countdownTimer.GetComponent<CountdownTimer>().countdownTimerX, 
 		        countdownTimer.GetComponent<CountdownTimer>().countdownTimerY, 0.0f);
