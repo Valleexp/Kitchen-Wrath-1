@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class LevelLoader : MonoBehaviour {
 
 	public GameObject player;
-	public GameObject platform;
 	public GameObject platformRemover;
 	public GameObject countdownTimer;
 	public GameObject buttons;
