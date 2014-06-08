@@ -8,11 +8,8 @@ public class Highscore : MonoBehaviour {
 
 	private string highscoreDisplay = "0";
 
-	private GameObject mainCamera = null;
-
 	void Awake()
 	{
-		mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 		TextDisplay();
 	}
 	

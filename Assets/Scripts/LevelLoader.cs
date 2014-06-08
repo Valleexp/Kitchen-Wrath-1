@@ -16,14 +16,13 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject background;
 	public GameObject midground;
 	public GameObject foreground;
+	public GameObject comboStove;
 	
-	[HideInInspector]public List<GameObject> listOfPlatforms = new List<GameObject>();
 	[HideInInspector]public List<GameObject> listOfChefs = new List<GameObject>();
-	[HideInInspector]public List<GameObject> listOfFoods = new List<GameObject>();
 	
-	public float platformStartX = 0.0f;
-	public float platformStartY = 0.0f;
-	
+//	public float platformStartX = 0.0f;
+//	public float platformStartY = 0.0f;
+//	
 	public float platformRemoverStartX = 0.0f;
 	
 	public int amountOfChefsAtOneTime = 0;
@@ -54,7 +53,8 @@ public class LevelLoader : MonoBehaviour {
 //			InitObjList(chef, ref listOfChefs, chef.GetComponent<Chef>().chefX + (i * Random.Range(2, 10)), chef.GetComponent<Chef>().chefY);
 		}
 
-
+		InitObj(ref comboStove, comboStove.GetComponent<ComboStove>().comboStoveX,
+		        comboStove.GetComponent<ComboStove>().comboStoveY, 0.0f);
 	}
 
 	// Use this for initialization
