@@ -25,7 +25,11 @@ public class Food : MonoBehaviour {
 	
 	void Recoil()
 	{
-		rigidbody2D.AddForce(new Vector2(Vector3.right.x * foodRecoil, Vector3.up.y * foodRecoil), ForceMode2D.Impulse);
+//		rigidbody2D.AddForce(new Vector2(Vector3.right.x * foodRecoil, Vector3.up.y * foodRecoil), ForceMode2D.Impulse);
+		transform.GetChild(0).rigidbody2D.AddForce(new Vector2(Vector3.left.x * foodRecoil, Vector3.up.y * foodRecoil), ForceMode2D.Impulse);
+		transform.GetChild(0).collider2D.enabled = false;
+		transform.GetChild(1).rigidbody2D.AddForce(new Vector2(Vector3.right.x * foodRecoil, Vector3.up.y * foodRecoil), ForceMode2D.Impulse);
+		transform.GetChild(1).collider2D.enabled = false;
 	}
 	
 	void OnCollisionEnter2D(Collision2D obj)
