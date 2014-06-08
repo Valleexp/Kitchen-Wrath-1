@@ -8,12 +8,11 @@ public class DisplayUI : MonoBehaviour {
 	public int ingredientBoxHeight = 50;
 	public int ingredientBoxY = 50;
 	public int ingredientBoxX = Screen.width - 200;
+	public int ingredientBoxGap = 10;
 
 	public int amountOfBoxes = 3;
 
 	public Texture defaultTexture;
-
-
 
 	private List<Texture> ingredients = new List<Texture>();
 
@@ -85,7 +84,7 @@ public class DisplayUI : MonoBehaviour {
 		}
 		else
 		{
-			GUI.DrawTexture(new Rect(ingredientBoxX + 10, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[0], ScaleMode.StretchToFill, true, 10.0F);
+			GUI.DrawTexture(new Rect(ingredientBoxX + ingredientBoxGap, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[0], ScaleMode.StretchToFill, true, 10.0F);
 		}
 
 		if (!ingredients[1]) {
@@ -93,7 +92,7 @@ public class DisplayUI : MonoBehaviour {
 		}
 		else
 		{
-			GUI.DrawTexture(new Rect(ingredientBoxX + 70, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[1], ScaleMode.StretchToFill, true, 10.0F);
+			GUI.DrawTexture(new Rect(ingredientBoxX + ingredientBoxWidth + (ingredientBoxGap * 2), ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[1], ScaleMode.StretchToFill, true, 10.0F);
 		}
 
 		if (!ingredients[2]) {
@@ -101,7 +100,7 @@ public class DisplayUI : MonoBehaviour {
 		}
 		else
 		{
-			GUI.DrawTexture(new Rect(ingredientBoxX + 130, ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[2], ScaleMode.StretchToFill, true, 10.0F);
+			GUI.DrawTexture(new Rect(ingredientBoxX + (ingredientBoxWidth * 2) + (ingredientBoxGap * 3), ingredientBoxY, ingredientBoxWidth, ingredientBoxHeight), ingredients[2], ScaleMode.StretchToFill, true, 10.0F);
 		}
 
 		GUI.Label(new Rect(10, 10, 100, 20), completedRecipe);
